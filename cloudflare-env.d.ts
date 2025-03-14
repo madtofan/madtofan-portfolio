@@ -3,5 +3,6 @@
 interface CloudflareEnv {
 	NEXT_CACHE_WORKERS_KV: KVNamespace;
 	NEXTJS_ENV: string;
+	RESEND_API_KEY: string;
 	ASSETS: Fetcher;
 }

@@ -61,18 +61,18 @@ export default function Education() {
           {educations.map((edu, index) => (
             <Card
               key={index}
-              className={`p-6 transition-all duration-700 transform ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              className={`p-6 transition-all duration-700 transform dark:bg-gray-900 dark:border-gray-800 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div>
                   <h4 className="text-lg font-semibold">{edu.institution}</h4>
-                  <p className="text-primary">{edu.degree}</p>
+                  <p className="text-teal-600 dark:text-teal-400">{edu.degree}</p>
                 </div>
                 <div className="text-right mt-2 md:mt-0">
-                  <p className="text-muted-foreground">{edu.period}</p>
-                  <p className="text-muted-foreground">GPA: {edu.gpa}</p>
+                  <p className="text-gray-500 dark:text-gray-400">{edu.period}</p>
+                  <p className="text-gray-500 dark:text-gray-400">GPA: {edu.gpa}</p>
                 </div>
               </div>
               {edu.achievements.length > 0 && (
@@ -85,7 +85,7 @@ export default function Education() {
                     {edu.achievements.map((achievement, i) => (
                       <li
                         key={i}
-                        className={`text-sm text-muted-foreground transition-all duration-500 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+                        className={`text-sm text-gray-500 dark:text-gray-400 transition-all duration-500 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
                           }`}
                         style={{ transitionDelay: `${index * 200 + i * 100}ms` }}
                       >
@@ -106,7 +106,7 @@ export default function Education() {
           Certifications
         </h3>
         <Card
-          className={`p-6 transition-all duration-700 transform ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          className={`p-6 transition-all duration-700 transform dark:bg-gray-900 dark:border-gray-800 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           style={{ transitionDelay: `600ms` }}
         >
@@ -119,7 +119,7 @@ export default function Education() {
                 style={{ transitionDelay: `${700 + index * 100}ms` }}
               >
                 <span className="font-medium">{cert.name}</span>
-                <span className="text-sm text-muted-foreground">{cert.issuer}</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">{cert.issuer}</span>
               </li>
             ))}
           </ul>
@@ -132,7 +132,7 @@ export default function Education() {
           Volunteer Experience
         </h3>
         <Card
-          className={`p-6 transition-all duration-700 transform ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          className={`p-6 transition-all duration-700 transform dark:bg-gray-900 dark:border-gray-800 ${isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           style={{ transitionDelay: `800ms` }}
         >
@@ -146,14 +146,14 @@ export default function Education() {
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
                 <div>
                   <h4 className="text-lg font-semibold">{vol.organization}</h4>
-                  <p className="text-primary">{vol.role}</p>
+                  <p className="text-teal-600 dark:text-teal-400">{vol.role}</p>
                 </div>
                 <div className="text-right mt-2 md:mt-0">
-                  <p className="text-muted-foreground">{vol.period}</p>
-                  <p className="text-muted-foreground">{vol.location}</p>
+                  <p className="text-gray-500 dark:text-gray-400">{vol.period}</p>
+                  <p className="text-gray-500 dark:text-gray-400">{vol.location}</p>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground">{vol.description}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{vol.description}</p>
             </div>
           ))}
         </Card>

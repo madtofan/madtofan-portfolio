@@ -1,9 +1,11 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useTheme } from "next-themes"
 
 export default function HeroBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { theme } = useTheme()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -23,30 +25,38 @@ export default function HeroBackground() {
 
     // Particle class
     class Particle {
-      x: number
-      y: number
-      size: number
-      speedX: number
-      speedY: number
-      color: string
+      x: number = 0
+      y: number = 0
+      size: number = 0;
+      speedX: number = 0;
+      speedY: number = 0;
+      color: string = "#000";
 
       constructor() {
-        this.x = Math.random() * (canvas?.width ?? 0)
-        this.y = Math.random() * (canvas?.height ?? 0)
+        if (!canvas) return;
+        this.x = Math.random() * canvas.width
+        this.y = Math.random() * canvas.height
         this.size = Math.random() * 5 + 1
         this.speedX = Math.random() * 3 - 1.5
         this.speedY = Math.random() * 3 - 1.5
-        this.color = `hsla(${Math.random() * 60 + 200}, 70%, 60%, ${Math.random() * 0.5 + 0.1})`
+
+        // Use teal colors with different opacity
+        const isDark = document.documentElement.classList.contains("dark")
+        const hue = isDark ? 175 : 170 // Teal hue
+        const saturation = isDark ? "80%" : "80%"
+        const lightness = isDark ? "50%" : "50%"
+        this.color = `hsla(${hue}, ${saturation}, ${lightness}, ${Math.random() * 0.5 + 0.1})`
       }
 
       update() {
+        if (!canvas) return;
         this.x += this.speedX
         this.y += this.speedY
 
-        if (this.x > (canvas?.width ?? 0)) this.x = 0
-        else if (this.x < 0) this.x = (canvas?.width ?? 0)
-        if (this.y > (canvas?.height ?? 0)) this.y = 0
-        else if (this.y < 0) this.y = (canvas?.height ?? 0)
+        if (this.x > canvas.width) this.x = 0
+        else if (this.x < 0) this.x = canvas.width
+        if (this.y > canvas.height) this.y = 0
+        else if (this.y < 0) this.y = canvas.height
       }
 
       draw() {
@@ -76,9 +86,12 @@ export default function HeroBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy)
 
           if (distance < maxDistance) {
-            const opacity = 1 - distance / maxDistance
             if (!ctx) return;
-            ctx.strokeStyle = `rgba(100, 150, 255, ${opacity * 0.2})`
+            const opacity = 1 - distance / maxDistance
+            const isDark = document.documentElement.classList.contains("dark")
+            ctx.strokeStyle = isDark
+              ? `rgba(20, 184, 166, ${opacity * 0.3})` // teal-500 with higher opacity
+              : `rgba(13, 148, 136, ${opacity * 0.2})` // teal-600 with opacity
             ctx.lineWidth = 1
             ctx.beginPath()
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
@@ -105,10 +118,24 @@ export default function HeroBackground() {
 
     animate()
 
+    // Update colors when theme changes
+    const observer = new MutationObserver(() => {
+      for (let i = 0; i < particlesArray.length; i++) {
+        const isDark = document.documentElement.classList.contains("dark")
+        const hue = isDark ? 175 : 170 // Teal hue
+        const saturation = isDark ? "80%" : "80%"
+        const lightness = isDark ? "50%" : "50%"
+        particlesArray[i].color = `hsla(${hue}, ${saturation}, ${lightness}, ${Math.random() * 0.5 + 0.1})`
+      }
+    })
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
+
     return () => {
       window.removeEventListener("resize", setCanvasDimensions)
+      observer.disconnect()
     }
-  }, [])
+  }, [theme])
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full -z-10 opacity-30" />
 }

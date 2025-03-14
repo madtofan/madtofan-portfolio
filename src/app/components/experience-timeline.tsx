@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { useInView } from "../../hooks/use-in-view"
+import { useInView } from "@/hooks/use-in-view"
 import { useRef } from "react"
 
 const experiences = [
@@ -60,33 +60,33 @@ export default function ExperienceTimeline() {
   return (
     <div ref={ref} className="space-y-8 relative">
       {/* Timeline line */}
-      <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-primary/20 hidden md:block"></div>
+      <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-teal-200 dark:bg-teal-900 hidden md:block"></div>
 
       {experiences.map((exp, index) => (
         <Card
           key={index}
-          className={`p-6 relative transition-all duration-700 transform ${isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+          className={`p-6 relative transition-all duration-700 transform dark:bg-gray-900 dark:border-gray-800 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             }`}
           style={{ transitionDelay: `${index * 200}ms` }}
         >
           {/* Timeline dot */}
-          <div className="absolute left-[-30px] top-6 w-4 h-4 rounded-full bg-primary hidden md:block"></div>
+          <div className="absolute left-[-30px] top-6 w-4 h-4 rounded-full bg-teal-500 hidden md:block"></div>
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
             <div>
               <h3 className="text-xl font-bold">{exp.position}</h3>
-              <h4 className="text-lg font-semibold text-primary">{exp.company}</h4>
+              <h4 className="text-lg font-semibold text-teal-600 dark:text-teal-400">{exp.company}</h4>
             </div>
             <div className="text-right mt-2 md:mt-0">
-              <p className="text-muted-foreground">{exp.period}</p>
-              <p className="text-muted-foreground">{exp.location}</p>
+              <p className="text-gray-500 dark:text-gray-400">{exp.period}</p>
+              <p className="text-gray-500 dark:text-gray-400">{exp.location}</p>
             </div>
           </div>
           <ul className="list-disc pl-5 space-y-2">
             {exp.achievements.map((achievement, i) => (
               <li
                 key={i}
-                className={`text-sm text-muted-foreground transition-all duration-500 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+                className={`text-sm text-gray-500 dark:text-gray-400 transition-all duration-500 ${isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
                   }`}
                 style={{ transitionDelay: `${index * 200 + i * 100}ms` }}
               >

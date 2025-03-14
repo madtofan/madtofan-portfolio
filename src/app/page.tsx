@@ -1,5 +1,4 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
@@ -13,6 +12,7 @@ import TechStack from "./components/tech-stack"
 import Education from "./components/education"
 import TypewriterEffect from "./components/typewriter-effect"
 import { useInView } from "@/hooks/use-in-view"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Page() {
   const [mounted, setMounted] = useState(false)
@@ -36,47 +36,72 @@ export default function Page() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background relative backdrop-opacity-0">
+    <div className="min-h-screen bg-white dark:bg-black relative transition-colors duration-300 backdrop-opacity-0">
       <ScrollProgress />
 
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-black/95 backdrop-blur transition-colors duration-300">
         <div className="container flex h-14 items-center mx-auto">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-6 flex items-center space-x-2" href="/">
-              <span className="hidden font-bold sm:inline-block ml-4">Madtofan.win</span>
+              <span className="hidden font-bold sm:inline-block">Madtofan.win</span>
             </Link>
             <nav className="flex items-center space-x-6 text-sm font-medium">
-              <Link href="#about" className="transition-colors hover:text-foreground/80 relative group">
+              <Link
+                href="#about"
+                className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
+              >
                 About
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="#experience" className="transition-colors hover:text-foreground/80 relative group">
+              <Link
+                href="#experience"
+                className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
+              >
                 Experience
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="#projects" className="transition-colors hover:text-foreground/80 relative group">
+              <Link
+                href="#projects"
+                className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
+              >
                 Projects
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="#skills" className="transition-colors hover:text-foreground/80 relative group">
+              <Link
+                href="#skills"
+                className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
+              >
                 Skills
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="#education" className="transition-colors hover:text-foreground/80 relative group">
+              <Link
+                href="#education"
+                className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
+              >
                 Education
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="#contact" className="transition-colors hover:text-foreground/80 relative group">
+              <Link
+                href="#contact"
+                className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
+              >
                 Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
               </Link>
             </nav>
           </div>
-          <Button variant="outline" className="ml-auto relative overflow-hidden group">
-            <span className="relative z-10">Resume</span>
-            <span className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-            <span className="absolute inset-0 bg-primary/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left delay-75"></span>
-          </Button>
+          <div className="ml-auto flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="outline" className="relative overflow-hidden group" asChild>
+              <a href="/Ahmad - fullstack developer.pdf" download="Ahmad - fullstack developer">
+                <span className="relative z-10 transition-colors group-hover:text-white dark:group-hover:text-slate-900">
+                  Resume
+                </span>
+                <span className="absolute inset-0 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                <span className="absolute inset-0 bg-teal-400/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left delay-75"></span>
+              </a>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -93,11 +118,11 @@ export default function Page() {
                   <TypewriterEffect texts={["Fullstack Developer", "Problem Solver", "Tech Enthusiast"]} />
                 </h2>
                 <div className="flex flex-wrap justify-center gap-4 py-4">
-                  <div className="flex items-center gap-1 text-muted-foreground">
+                  <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                     <MapPin className="h-4 w-4" />
                     <span>Kuala Lumpur, Malaysia</span>
                   </div>
-                  <div className="flex items-center gap-1 text-muted-foreground">
+                  <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                     <Phone className="h-4 w-4" />
                     <span>+6012 478 6884</span>
                   </div>
@@ -140,10 +165,10 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center relative">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
+              <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">
                 Experience
               </span>
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary rounded"></div>
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
             </h2>
             <ExperienceTimeline />
           </div>
@@ -157,41 +182,36 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center relative">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
-                Projects
-              </span>
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary rounded"></div>
+              <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">Projects</span>
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
             </h2>
             <div className="grid gap-6 md:grid-cols-2">
               <ProjectCard
                 title="Ejen2U Mobile App"
                 description="Developed a mobile app that simplifies the process for agent management, order stocks, calculate earnings and generate reports using React Native and MySQL. Led a team of 3 by engaging with 5 stakeholders to discuss, design and develop user requirements."
-                image="/placeholder.svg?height=400&width=600"
-                link="#"
+                image="/ejen2u.webp?height=400&width=600"
                 tags={["React Native", "MySQL", "Project Management"]}
                 status="Delivered"
               />
               <ProjectCard
                 title="Solar Dryer Automation"
                 description="Designed, fabricated, procured and programmed embedded micro-controllers to monitor and automatically maintain the temperature and humidity inside the Solar Dryer for Agriculture industry process. Used Google Sheets to create a dashboard for real-time monitoring and logging."
-                image="/placeholder.svg?height=400&width=600"
-                link="#"
+                image="/solar-dryer.webp?height=400&width=600"
                 tags={["IoT", "Embedded Systems", "Google Sheets API"]}
                 status="Delivered"
               />
               <ProjectCard
                 title="Restaurant POS System"
                 description="Designing and developing a Restaurant POS System with QR Ordering and payment checkout using React Native for mobile app and NextJS Serverless hosted on Cloudflare Edge for Web Applications and the Backend Server."
-                image="/placeholder.svg?height=400&width=600"
-                link="#"
+                image="/kedai-pos.webp?height=400&width=600"
+                link="https://kedai.madtofan.win"
                 tags={["React Native", "NextJS", "Cloudflare Edge", "Serverless"]}
                 status="On-going"
               />
               <ProjectCard
                 title="Automated Trading Bot"
                 description="Designed, calculated and developed a trading bot to constantly monitor the market price of selected ticker stocks to make purchasing and selling decisions automatically using Python. Successfully generated positive portfolio in 3 months. Currently studying to embed Machine Learning into the trading algorithm."
-                image="/placeholder.svg?height=400&width=600"
-                link="#"
+                image="/automated-trading-bot.webp?height=400&width=600"
                 tags={["Python", "Machine Learning", "Financial APIs"]}
                 status="On-going"
               />
@@ -207,10 +227,10 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center relative">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
+              <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">
                 Skills & Technologies
               </span>
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary rounded"></div>
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
             </h2>
             <TechStack />
           </div>
@@ -224,10 +244,10 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center relative">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
+              <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">
                 Education & Certifications
               </span>
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary rounded"></div>
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
             </h2>
             <Education />
           </div>
@@ -242,10 +262,10 @@ export default function Page() {
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-2xl">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center relative">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
+                <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">
                   Get in Touch
                 </span>
-                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary rounded"></div>
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
               </h2>
               <ContactForm />
             </div>
@@ -253,18 +273,12 @@ export default function Page() {
         </section>
       </main>
 
-      <footer className="border-t">
-        <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6">
+      <footer className="border-t dark:border-slate-800 transition-colors duration-300">
+        <div className="container flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 m-auto">
           <p className="text-xs text-gray-500 dark:text-gray-400">
             © 2024 Ahmad bin Zainul Abidin. All rights reserved.
           </p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Terms of Service
-            </Link>
-            <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Privacy
-            </Link>
           </nav>
         </div>
       </footer>
