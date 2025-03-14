@@ -36,10 +36,10 @@ export default function Page() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black relative transition-colors duration-300 backdrop-opacity-0">
+    <div className="min-h-screen bg-background relative backdrop-opacity-0">
       <ScrollProgress />
 
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-black/95 backdrop-blur transition-colors duration-300">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 items-center mx-auto">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-6 flex items-center space-x-2" href="/">
