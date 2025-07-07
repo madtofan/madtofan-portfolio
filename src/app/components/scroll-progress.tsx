@@ -19,7 +19,7 @@ export default function ScrollProgress() {
 
   return (
     <div className="fixed top-0 left-0 right-0 h-1 z-50 bg-background/20">
-      <div className="h-full bg-gradient-to-r from-primary to-primary/50" style={{ width: `${scrollProgress}%` }} />
+      <div className="h-full bg-gradient-to-r from-teal-500 to-teal-300" style={{ width: `${scrollProgress}%` }} />
     </div>
   )
 }

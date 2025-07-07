@@ -13,6 +13,7 @@ import Education from "./components/education"
 import TypewriterEffect from "./components/typewriter-effect"
 import { useInView } from "@/hooks/use-in-view"
 import { ThemeToggle } from "@/components/theme-toggle"
+import InteractiveMap from "./components/interactive-map"
 
 export default function Page() {
   const [mounted, setMounted] = useState(false)
@@ -21,6 +22,7 @@ export default function Page() {
   const experienceRef = useRef<HTMLElement>(null)
   const projectsRef = useRef<HTMLElement>(null)
   const skillsRef = useRef<HTMLElement>(null)
+  const mapRef = useRef<HTMLElement>(null)
   const educationRef = useRef<HTMLElement>(null)
   const contactRef = useRef<HTMLElement>(null)
 
@@ -28,6 +30,7 @@ export default function Page() {
   const experienceInView = useInView(experienceRef, { threshold: 0.1 })
   const projectsInView = useInView(projectsRef, { threshold: 0.1 })
   const skillsInView = useInView(skillsRef, { threshold: 0.1 })
+  const mapInView = useInView(mapRef, { threshold: 0.1 })
   const educationInView = useInView(educationRef, { threshold: 0.1 })
   const contactInView = useInView(contactRef, { threshold: 0.1 })
 
@@ -37,9 +40,9 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-background relative backdrop-opacity-0">
-      <ScrollProgress />
 
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <ScrollProgress />
         <div className="container flex h-14 items-center mx-auto">
           <div className="mr-4 hidden md:flex">
             <Link className="mr-6 flex items-center space-x-2" href="/">
@@ -72,6 +75,13 @@ export default function Page() {
                 className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
               >
                 Skills
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
+              </Link>
+              <Link
+                href="#map"
+                className="transition-colors hover:text-gray-600 dark:hover:text-gray-300 relative group"
+              >
+                Journey
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-500 transition-all group-hover:w-full"></span>
               </Link>
               <Link
@@ -182,28 +192,28 @@ export default function Page() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center relative">
-              <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">Projects</span>
+              <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">Personal Projects</span>
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
             </h2>
             <div className="grid gap-6 md:grid-cols-2">
               <ProjectCard
                 title="Ejen2U Mobile App"
                 description="Developed a mobile app that simplifies the process for agent management, order stocks, calculate earnings and generate reports using React Native and MySQL. Led a team of 3 by engaging with 5 stakeholders to discuss, design and develop user requirements."
-                image="/ejen2u.webp?height=400&width=600"
+                image="/ejen2u.png?height=400&width=600"
                 tags={["React Native", "MySQL", "Project Management"]}
                 status="Delivered"
               />
               <ProjectCard
                 title="Solar Dryer Automation"
                 description="Designed, fabricated, procured and programmed embedded micro-controllers to monitor and automatically maintain the temperature and humidity inside the Solar Dryer for Agriculture industry process. Used Google Sheets to create a dashboard for real-time monitoring and logging."
-                image="/solar-dryer.webp?height=400&width=600"
+                image="/solar-dryer.png?height=400&width=600"
                 tags={["IoT", "Embedded Systems", "Google Sheets API"]}
                 status="Delivered"
               />
               <ProjectCard
                 title="Restaurant POS System"
                 description="Designing and developing a Restaurant POS System with QR Ordering and payment checkout using React Native for mobile app and NextJS Serverless hosted on Cloudflare Edge for Web Applications and the Backend Server."
-                image="/kedai-pos.webp?height=400&width=600"
+                image="/kedai-pos.png?height=400&width=600"
                 link="https://kedai.madtofan.win"
                 tags={["React Native", "NextJS", "Cloudflare Edge", "Serverless"]}
                 status="On-going"
@@ -211,7 +221,7 @@ export default function Page() {
               <ProjectCard
                 title="Automated Trading Bot"
                 description="Designed, calculated and developed a trading bot to constantly monitor the market price of selected ticker stocks to make purchasing and selling decisions automatically using Python. Successfully generated positive portfolio in 3 months. Currently studying to embed Machine Learning into the trading algorithm."
-                image="/automated-trading-bot.webp?height=400&width=600"
+                image="/automated-trading-bot.png?height=400&width=600"
                 tags={["Python", "Machine Learning", "Financial APIs"]}
                 status="On-going"
               />
@@ -233,6 +243,23 @@ export default function Page() {
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
             </h2>
             <TechStack />
+          </div>
+        </section>
+
+        <section
+          id="map"
+          ref={mapRef}
+          className={`py-12 md:py-24 lg:py-32 transition-all duration-1000 ${mounted && mapInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+        >
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center relative">
+              <span className="bg-gradient-to-r from-teal-500 to-teal-300 bg-clip-text text-transparent">
+                My Journey
+              </span>
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-teal-500 rounded"></div>
+            </h2>
+            <InteractiveMap />
           </div>
         </section>
 

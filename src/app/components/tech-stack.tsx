@@ -7,7 +7,7 @@ import { useRef } from "react"
 const technologies = [
   {
     category: "Front End Development",
-    skills: ["React", "TypeScript", "JavaScript", "NextJS", "TailwindCSS", "Material UI"],
+    skills: ["React", "TypeScript", "JavaScript", "NextJS", "TailwindCSS", "Material UI", "React Leaflet", "Kronograph"],
   },
   {
     category: "Backend Development",
